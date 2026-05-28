@@ -17,8 +17,11 @@ jobs:
         with:
           java-version: '17'
 
+      - name: Give permission
+        run: chmod +x mvnw
+
       - name: Build project
-        run: mvn clean package -DskipTests
+        run: ./mvnw clean package -DskipTests
 
       - name: Trigger Render Deploy
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
